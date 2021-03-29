@@ -1,5 +1,15 @@
-import { createApp } from 'vue';
+import {compile, createApp} from 'vue';
 
-const app = createApp({
-    template: '<h1>Hello Vue! Is this cooler?</h1>',
+
+const template = '<h1>Hello {{ firstName }}! Is this cooler?</h1>';
+
+createApp({
+    data() {
+        return {
+            firstName: 'Miroslav',
+        };
+    },
+    render() {
+        return compile(template)(this.$.ctx);
+    },
 }).mount('#app');
