@@ -13,6 +13,7 @@
         "regenerator-runtime": "^0.13.2",
         "sass": "^1.29.0",
         "sass-loader": "^8.0.0",
+        "vue": "^3.0.0-beta.9",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -23,5 +24,9 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress",
         "lint": "node_modules/.bin/eslint assets/** --ignore-pattern *.scss --ignore-pattern *.gif --ignore-pattern *.png"
+    },
+    "dependencies": {
+        "@vue/compiler-sfc": "^3.0.9",
+        "vue-loader": "^16.0.0-alpha.1"
     }
 }
