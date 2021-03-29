@@ -46,9 +46,7 @@
                 </div>
 
                 <div class="row">
-                    <span class="p-3">
-                        {{ legend }}
-                    </span>
+                    <legend-component title="TO PUT LEGEND HERE!" />
                 </div>
             </div>
         </div>
@@ -56,10 +54,14 @@
 </template>
 
 <script>
+import LegendComponent from '../components/legend';
+
 export default {
     name: 'Products',
+    components: {
+        LegendComponent,
+    },
     data: () => ({
-        legend: 'Shipping takes 10-13 weeks, and products probably won\'t work',
     }),
 };
 </script>
