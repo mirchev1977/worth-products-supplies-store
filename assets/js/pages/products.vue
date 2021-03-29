@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="row">
-                    <legend-component title="TO PUT LEGEND HERE!" />
+                    <legend-component :title="legend" />
                 </div>
             </div>
         </div>
@@ -62,6 +62,7 @@ export default {
         LegendComponent,
     },
     data: () => ({
+        legend: 'This is the Legend attribute',
     }),
 };
 </script>
