@@ -75,7 +75,7 @@ export default {
 
   ul {
     li a:hover {
-      background: $blue-component-link-hover;
+        background: $blue-component-link-hover;
     }
   }
 }
