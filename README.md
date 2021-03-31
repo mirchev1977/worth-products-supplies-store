@@ -1,14 +1,11 @@
-# The Delightful World of Vue.js
+# WORTH PRODUCTS SUPPLIES STORE
 
 Well hi there! This repository holds the code and script
-for the [The Delightful World of Vue.js](https://symfonycasts.com/screencast/vue) course on SymfonyCasts.
+for the [WORTH PRODUCTS SUPPLIES STORE](https://github.com/mirchev1977/worth-products-supplies-store).
 
 ## Setup
 
-If you've just downloaded the code, congratulations!!
-
-To get it working, pour some coffee or tea, and
-follow these steps:
+To get it working, do the following:
 
 **Download Composer dependencies**
 
@@ -85,12 +82,8 @@ Have fun!
 ## Have Ideas, Feedback or an Issue?
 
 If you have suggestions or questions, please feel free to
-open an issue on this repository or comment on the course
-itself. We're watching both :).
+open an issue on this repository.
 
 ## Thanks!
 
-And as always, thanks so much for your support and letting
-us do what we love!
-
-<3 Your friends at SymfonyCasts
+Miroslav Mirchev

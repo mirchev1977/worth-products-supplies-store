@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LegendComponent from '@/components/legend';
 
 export default {
@@ -31,6 +32,11 @@ export default {
     data: () => ({
         legend: 'This is the Legend attribute',
     }),
+    mounted() {
+        axios.get('/api/products').then((response) => {
+            console.log(response);
+        });
+    },
 };
 </script>
 
