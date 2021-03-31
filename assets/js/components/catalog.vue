@@ -9,8 +9,12 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-6 mb-2 pb-2">
-                TODO - load some products!
+            <div
+                v-for="product in products"
+                :key="product['@id']"
+                class="col-xs-12 col-6 mb-2 pb-2"
+            >
+                {{ product.name }}
             </div>
         </div>
 
@@ -31,11 +35,15 @@ export default {
     },
     data: () => ({
         legend: 'This is the Legend attribute',
+        products: [],
     }),
-    mounted() {
-        axios.get('/api/products').then((response) => {
-            console.log(response);
-        });
+    async mounted() {
+        // axios.get('/api/products').then((response) => {
+        //     console.log(response);
+        // });
+        const response = await axios.get('/api/products');
+
+        this.products = response.data['hydra:member'];
     },
 };
 </script>
