@@ -2,9 +2,10 @@
     <div>
         <div class="row">
             <div class="col-12">
-                <h1>
-                    Products
-                </h1>
+                <title-component
+                    :current-category-id="currentCategoryId"
+                    :categories="categories"
+                />
             </div>
         </div>
 
@@ -23,17 +24,23 @@
 import { fetchProducts } from '@/services/products-service';
 import LegendComponent from '@/components/legend';
 import ProductList from '@/components/product-list';
+import TitleComponent from '@/components/title';
 
 export default {
     name: 'Catalog',
     components: {
         LegendComponent,
         ProductList,
+        TitleComponent,
     },
     props: {
         currentCategoryId: {
             type: String,
             default: null,
+        },
+        categories: {
+            type: Array,
+            required: true,
         },
     },
     data() {
