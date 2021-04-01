@@ -27,21 +27,29 @@ export default {
         LegendComponent,
         ProductList,
     },
-    data: () => ({
-        legend: 'This is the Legend attribute',
-        products: [],
-    }),
+    props: {
+        currentCategoryId: {
+            type: String,
+            default: null,
+        },
+    },
+    data() {
+        return {
+            products: [],
+            legend: 'Shipping takes 10-13 weeks, and products probably won\'t work',
+        };
+    },
     async created() {
-        // axios.get('/api/products').then((response) => {
-        //     console.log(response);
-        // });
-        const response = await axios.get('/api/products');
+        const params = {};
+        if (this.currentCategoryId) {
+            params.category = this.currentCategoryId;
+        }
+
+        const response = await axios.get('/api/products', {
+            params: params,
+        });
 
         this.products = response.data['hydra:member'];
     },
 };
 </script>
-
-<style scoped>
-
-</style>
