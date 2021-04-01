@@ -4,6 +4,7 @@
             <h5 class="text-center">
                 Categories
             </h5>
+
             <ul class="nav flex-column mb4">
                 <li class="nav-item">
                     <a
@@ -14,6 +15,7 @@
                         href="/"
                     >All Products</a>
                 </li>
+
                 <li
                     v-for="category in categories"
                     :key="category['@id']"
@@ -23,15 +25,17 @@
                         :href="`/category/${category.id}`"
                         :class="{
                             'nav-link': true,
-                            'selected' : category['@id'] === currentCategoryId,
+                            'selected': category['@id'] === currentCategoryId,
                         }"
                     >
                         {{ category.name }}
                     </a>
                 </li>
             </ul>
+
             <hr>
         </div>
+
         <div class="d-flex justify-content-end">
             <button
                 class="btn btn-secondary btn-sm"
@@ -41,6 +45,7 @@
         </div>
     </div>
 </template>
+
 <script>
 import axios from 'axios';
 
@@ -51,31 +56,35 @@ export default {
             type: Boolean,
             required: true,
         },
+        currentCategoryId: {
+            type: String,
+            default: null,
+        },
     },
     data() {
         return {
             categories: [],
         };
     },
-    computed: {
-        currentCategoryId() {
-            return window.currentCategoryId;
-        },
-    },
     async created() {
         const response = await axios.get('/api/categories');
+
         this.categories = response.data['hydra:member'];
     },
 };
 </script>
+
 <style lang="scss" module>
 @import '~styles/components/light-component';
+
 .component :global {
     @include light-component;
+
     ul {
         li a:hover {
             background: $blue-component-link-hover;
         }
+
         li a.selected {
             background: $light-component-border;
         }
