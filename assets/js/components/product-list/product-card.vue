@@ -7,14 +7,17 @@
                     :src="product.image"
                     class="d-block mb-2"
                 >
+
                 <h3 class="font-weight-bold mb-2 px-2">
                     {{ product.name }}
                 </h3>
             </div>
+
             <div class="p-2 my-3 d-md-flex justify-content-between">
                 <p class="p-0 d-inline">
-                    <strong>BGN {{ price }}</strong>
+                    <strong>${{ price }}</strong>
                 </p>
+
                 <button
                     class="btn btn-info btn-sm"
                 >
@@ -30,6 +33,8 @@
 </template>
 
 <script>
+import formatPrice from '@/helpers/format-price';
+
 export default {
     name: 'ProductCard',
     props: {
@@ -39,17 +44,19 @@ export default {
         },
     },
     computed: {
+        /**
+         * Returns a formatted price for the product
+         * @returns {string}
+         */
         price() {
-            return (this.product.price / 100)
-                .toLocaleString('bg-BG', { minimumFractionDigits: 2 });
+            return formatPrice(this.product.price);
         },
     },
 };
 </script>
 
 <style lang="scss" module>
-@import '~styles/components/light-component.scss';
-
+@import '~styles/components/light-component';
 .product-box {
     border: 1px solid $light-component-border;
     box-shadow: 0 0 7px 4px #efefee;
@@ -62,6 +69,7 @@ export default {
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
     }
+
     h3 {
         font-size: 1.2rem;
     }
