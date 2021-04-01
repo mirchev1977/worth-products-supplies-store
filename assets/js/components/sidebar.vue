@@ -1,10 +1,9 @@
 <template>
-    <div :class="[this.$style.compoment, 'p-3', 'mb-5']">
+    <div :class="[$style.component, 'p-3', 'mb-5']">
         <div v-show="!collapsed">
             <h5 class="text-center">
                 Categories
             </h5>
-
             <ul class="nav flex-column mb4">
                 <li class="nav-item">
                     <a
@@ -13,17 +12,18 @@
                     >All Products</a>
                 </li>
                 <li
-                    v-for="(category, index) in categories"
-                    :key="index"
+                    v-for="category in categories"
+                    :key="category['@id']"
                     class="nav-item"
                 >
                     <a
+                        :href="`/category/${category.id}`"
                         class="nav-link"
-                        :href="category.link"
-                    >{{ category.name }}</a>
+                    >
+                        {{ category.name }}
+                    </a>
                 </li>
             </ul>
-
             <hr>
         </div>
         <div class="d-flex justify-content-end">
@@ -35,8 +35,9 @@
         </div>
     </div>
 </template>
-
 <script>
+import axios from 'axios';
+
 export default {
     name: 'Sidebar',
     props: {
@@ -47,27 +48,19 @@ export default {
     },
     data() {
         return {
-            categories: [
-                {
-                    name: 'Data Matrix Printers',
-                    link: '#',
-                },
-                {
-                    name: 'Iomega Zip Drives',
-                    link: '#',
-                },
-            ],
+            categories: [],
         };
+    },
+    async created() {
+        const response = await axios.get('/api/categories');
+        this.categories = response.data['hydra:member'];
     },
 };
 </script>
-
 <style lang="scss" module>
 @import '~styles/components/light-component';
-
 .component {
     @include light-component;
-
     ul {
         li a:hover {
             background: $blue-component-link-hover;
