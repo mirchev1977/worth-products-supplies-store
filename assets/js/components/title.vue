@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.component">
         <h1>
-            Products
+            {{ text }}
         </h1>
     </div>
 </template>
@@ -10,13 +10,20 @@
 export default {
     name: 'Title',
     props: {
-        currentCategoryId: {
+        text: {
             type: String,
-            default: null,
-        },
-        categories: {
-            type: Array,
             required: true,
+        },
+    },
+    computed: {
+        categoryName() {
+            if (this.currentCategoryId === null) {
+                return 'All Products';
+            }
+
+            const category = this.categories.find((cat) => (cat['@id'] === this.currentCategoryId));
+
+            return category ? category.name : '';
         },
     },
 };
@@ -24,8 +31,8 @@ export default {
 
 <style lang="scss" module>
 .component {
-    h1 {
-        font-size: 1.7rem;
-    }
+  h1 {
+    font-size: 1.7rem;
+  }
 }
 </style>

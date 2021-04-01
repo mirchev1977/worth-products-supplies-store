@@ -2,10 +2,7 @@
     <div>
         <div class="row">
             <div class="col-3">
-                <title-component
-                    :current-category-id="currentCategoryId"
-                    :categories="categories"
-                />
+                <title-component :text="categoryName" />
             </div>
             <div class="col-9">
                 <search-bar @search-products="onSearchProducts" />
@@ -56,6 +53,17 @@ export default {
             searchTerm: null,
         };
     },
+    computed: {
+        categoryName() {
+            if (this.currentCategoryId === null) {
+                return 'All Products';
+            }
+
+            const category = this.categories.find((cat) => (cat['@id'] === this.currentCategoryId));
+
+            return category ? category.name : '';
+        },
+    },
     watch: {
         currentCategoryId() {
             this.loadProducts();
@@ -65,11 +73,11 @@ export default {
         this.loadProducts();
     },
     methods: {
-        /**
-         * Handles a change in the searchTerm provided by the search bar and fetches new products
-         *
-         * @param {string} term
-         */
+    /**
+     * Handles a change in the searchTerm provided by the search bar and fetches new products
+     *
+     * @param {string} term
+     */
         onSearchProducts({ term }) {
             this.searchTerm = term;
             this.loadProducts();

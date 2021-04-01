@@ -19,3 +19,19 @@ export function fetchProducts(categoryIri, searchTerm) {
         params,
     });
 }
+
+export function fetchFeaturedProducts() {
+    return axios.get('/api/products', {
+        params: { featured: 1 },
+    });
+}
+
+/**
+ * Gets a product from the API according to the IRI.
+ *
+ * @param {string} iri
+ * @return {Promise}
+ */
+export function fetchOneProduct(iri) {
+    return axios.get(iri);
+}
