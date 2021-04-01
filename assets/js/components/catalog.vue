@@ -31,7 +31,7 @@ export default {
         legend: 'This is the Legend attribute',
         products: [],
     }),
-    async mounted() {
+    async created() {
         // axios.get('/api/products').then((response) => {
         //     console.log(response);
         // });
