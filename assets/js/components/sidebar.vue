@@ -50,7 +50,6 @@
 
 <script>
 import Loading from '@/components/loading';
-import { fetchCategories } from '@/services/categories-service';
 
 export default {
     name: 'Sidebar',

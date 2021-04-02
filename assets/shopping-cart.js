@@ -1,4 +1,4 @@
 import { createApp} from 'vue';
-import App from '@/pages/products';
+import App from '@/pages/shopping-cart';
 
 createApp(App).mount('#app');
