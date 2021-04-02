@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { fetchCart } from '@/services/cart-service.js';
 import formatPrice from '@/helpers/format-price';
 import { fetchOneProduct } from '@/services/products-service';
 import ColorSelector from '@/components/color-selector';
@@ -83,6 +84,7 @@ export default {
     },
     data() {
         return {
+            cart: null,
             product: null,
             loading: true,
         };
@@ -97,6 +99,10 @@ export default {
         },
     },
     async created() {
+        fetchCart().then((cart) => {
+            this.cart = cart;
+        });
+
         try {
             this.product = (await fetchOneProduct(this.productId)).data;
         } finally {
