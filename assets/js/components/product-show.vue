@@ -40,6 +40,7 @@
                         <div class="d-flex align-items-center justify-content-center">
                             <color-selector
                                 v-if="product.colors.length !== 0"
+                                @color-selected="updateSelectedColor"
                             />
 
                             <input
@@ -73,7 +74,7 @@
 </template>
 
 <script>
-import { fetchCart, addItemToCart } from '@/services/cart-service.js';
+import { fetchCart, addItemToCart, getCartTotalItems } from '@/services/cart-service.js';
 import formatPrice from '@/helpers/format-price';
 import { fetchOneProduct } from '@/services/products-service';
 import ColorSelector from '@/components/color-selector';
@@ -97,6 +98,7 @@ export default {
         return {
             cart: null,
             quantity: 1,
+            selectedColorId: null,
             addToCartLoading: false,
             addToCartSuccess: false,
             product: null,
@@ -104,10 +106,10 @@ export default {
         };
     },
     computed: {
-    /**
-     * Returns a formatted price for the product
-     * @returns {string}
-     */
+        /**
+         * Returns a formatted price for the product
+         * @returns {string}
+         */
         price() {
             return formatPrice(this.product.price);
         },
@@ -125,15 +127,27 @@ export default {
     },
     methods: {
         async addToCart() {
+            if (this.product.colors.length && this.selectedColorId === null) {
+                alert('Please select a color first!');
+                return;
+            }
+
             this.addToCartLoading = true;
             this.addToCartSuccess = false;
             await addItemToCart(this.cart, {
                 product: this.product['@id'],
-                color: null,
+                color: this.selectedColorId,
                 quantity: this.quantity,
             });
             this.addToCartLoading = false;
             this.addToCartSuccess = true;
+
+            document.getElementById('js-shopping-cart-items')
+                .innerHTML = getCartTotalItems(this.cart).toString();
+        },
+
+        updateSelectedColor(iri) {
+            this.selectedColorId = iri;
         },
     },
 };
@@ -143,15 +157,15 @@ export default {
 @import '~styles/components/light-component';
 
 .product {
-  @include light-component;
+    @include light-component;
 
-  img {
-    max-width:100%;
-    max-height:100%;
-  }
+    img {
+        max-width:100%;
+        max-height:100%;
+    }
 
-  input {
-    width: 60px;
-  }
+    input {
+        width: 60px;
+    }
 }
 </style>

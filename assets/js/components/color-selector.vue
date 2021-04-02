@@ -36,20 +36,20 @@ export default {
 
 <style lang="scss" module>
 .component :global {
-  height: 25px;
-
-  span {
-    display: inline-block;
-    border-radius: 4px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    width: 25px;
     height: 25px;
-    margin-right: 10px;
 
-    &.selected {
-      border: 2px solid black
+    span {
+        display: inline-block;
+        border-radius: 4px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+
+        &.selected {
+            border: 2px solid black
+        }
     }
-  }
 }
 </style>
