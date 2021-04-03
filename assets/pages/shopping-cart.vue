@@ -34,20 +34,22 @@
                         name="fade"
                         mode="out-in"
                     >
-                        <shopping-cart-list
-                            v-if="completeCart && currentState === 'cart'"
-                            :items="completeCart.items"
-                            @updateQuantity="updateQuantity"
-                            @removeFromCart="removeProductFromCart(
-                                $event.productId,
-                                $event.colorId,
-                            )"
-                        />
+                        <div>
+                            <shopping-cart-list
+                                v-if="completeCart && currentState === 'cart'"
+                                :items="completeCart.items"
+                                @updateQuantity="updateQuantity"
+                                @removeFromCart="removeProductFromCart(
+                                    $event.productId,
+                                    $event.colorId,
+                                )"
+                            />
 
-                        <checkout-form
-                            v-if="completeCart && currentState === 'checkout'"
-                            :cart="cart"
-                        />
+                            <checkout-form
+                                v-if="completeCart && currentState === 'checkout'"
+                                :cart="cart"
+                            />
+                        </div>
                     </transition>
 
                     <div

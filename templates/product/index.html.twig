@@ -15,15 +15,15 @@
 
     <script>
         {% if currentCategoryId is defined %}
-        window.currentCategoryId = '{{ currentCategoryId|e('js') }}';
+            window.currentCategoryId = '{{ currentCategoryId|e('js') }}';
         {% else %}
-        window.currentCategoryId = null;
+            window.currentCategoryId = null;
         {% endif %}
 
         {% if currentProductId is defined %}
-        window.currentProductId = '{{ currentProductId|e('js') }}';
+            window.currentProductId = '{{ currentProductId|e('js') }}';
         {% else %}
-        window.currentProductId = null;
+            window.currentProductId = null;
         {% endif %}
 
         window.categories = {{ categories|jsonld }};

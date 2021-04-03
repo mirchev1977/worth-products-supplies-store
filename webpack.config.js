@@ -24,8 +24,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/js/app.js')
-    .addEntry('products', './assets/js/products.js')
+    .addEntry('app', './assets/app.js')
+    .addEntry('products', './assets/products.js')
     .addEntry('shopping-cart', './assets/shopping-cart.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
@@ -36,9 +36,11 @@ Encore
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
+
+    // This is our alias to the root vue components dir
     .addAliases({
-        '@': path.resolve(__dirname, 'assets', 'js'),
-        styles: path.resolve(__dirname, 'assets', 'scss'),
+        '@': path.resolve(__dirname, 'assets'),
+        styles: path.resolve(__dirname, 'assets', 'styles'),
     })
 
     /*
@@ -67,11 +69,8 @@ Encore
             : 'images/[path][name].[ext]',
     })
 
-    // enables Sass/SCSS support
-    .enableSassLoader()
-    .enableVueLoader(() => {}, {
-        version: 3,
-    })
+    // Enable .vue file processing
+    .enableVueLoader()
 
     // gives better module CSS naming in dev
     .configureCssLoader((config) => {
@@ -79,6 +78,9 @@ Encore
             config.modules.localIdentName = '[name]_[local]_[hash:base64:5]';
         }
     })
+
+    // enables Sass/SCSS support
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
