@@ -46,6 +46,13 @@
                     </li>
                 </ul>
             </nav>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    {% if app.session.get('user') %}
+                        <p class="navbar-nav text-white float-right mr-4 mb-2 mt-0">Welcome, {{app.session.get('user').email}}!</p>
+                    {% endif %}
+                </li>
+            </ul>
         </header>
 
         {% block body %}{% endblock %}
