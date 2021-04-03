@@ -12,7 +12,7 @@
             :type="type"
             :value="value"
             :class="{
-                'is-invalid': !isValid,
+                // 'is-invalid': !isValid,
                 'form-control': true,
             }"
             @input="$emit('input', $event.target.value)"

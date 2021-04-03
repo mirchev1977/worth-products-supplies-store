@@ -98,6 +98,20 @@ export default {
             }
 
             this.products = response.data['hydra:member'];
+
+            if (window.myHistory) {
+                const historyItems = JSON.parse(window.localStorage.getItem('usersLS'));
+                const filtered = [];
+                for (const prod of this.products) {
+                    if (historyItems[window.user.email][prod.id]) {
+                        filtered.push(prod);
+                    }
+                }
+
+                this.products = filtered;
+            }
+            // console.log(window.localStorage.getItem('usersLS'));
+            // console.log(window.user);
         },
     },
 };

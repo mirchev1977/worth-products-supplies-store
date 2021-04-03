@@ -28,7 +28,7 @@
                 <ul class="navbar-nav">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('app_logout') }}">
+                            <a id="logout" class="nav-link" href="{{ path('app_logout') }}">
                                 Log out
                             </a>
                         </li>
@@ -105,15 +105,19 @@
                     }
 
                     var banner = document.getElementById('banner');
+                    var logout = document.getElementById('logout');
                     banner.addEventListener('click', function () {
                         window.localStorage.removeItem("myHistory");
                     });
+                    logout.addEventListener('click', function () {
+                        window.localStorage.removeItem("myHistory");
+                    });
 
-                    var purchaseHistory = document.getElementById('purchase-history');
-                        purchaseHistory.addEventListener('click', function () {
-                            window.location.replace('/');
-                            window.localStorage.setItem("myHistory", 1);
-                        });
+                var purchaseHistory = document.getElementById('purchase-history');
+                    purchaseHistory.addEventListener('click', function () {
+                        window.location.replace('/');
+                        window.localStorage.setItem("myHistory", 1);
+                    });
                 {% endif %}
             </script>
             {{ encore_entry_script_tags('app') }}

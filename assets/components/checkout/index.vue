@@ -128,15 +128,23 @@ export default {
             this.serverError = false;
             this.validationErrors = this.getEmptyValidationErrors();
 
+            const historyItems = JSON.parse(window.localStorage.getItem('usersLS'));
+            for (const itm of this.cart.items) {
+                const productUrlArr = itm.product.split('/');
+                const itmId = productUrlArr[productUrlArr.length - 1];
+                historyItems[window.user.email][itmId] = 1;
+            }
+
+            await clearCart();
+
+            window.localStorage.setItem('usersLS', JSON.stringify(historyItems));
+            window.location.replace('/');
+
             try {
                 const response = await createOrder({
                     ...this.form,
                     purchaseItems: this.cart.items,
                 });
-
-                await clearCart();
-
-                window.location = `/confirmation/${response.data.id}`;
             } catch (error) {
                 const { response } = error;
 
