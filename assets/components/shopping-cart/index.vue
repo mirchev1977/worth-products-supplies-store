@@ -34,7 +34,7 @@
             />
 
             <div class="p-3">
-                Total: <strong>${{ totalPrice }}</strong>
+                Total: <strong>BGN {{ totalPrice }}</strong>
             </div>
         </div>
     </div>

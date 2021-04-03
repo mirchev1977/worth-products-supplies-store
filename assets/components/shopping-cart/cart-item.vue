@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-3">
-            ${{ totalPrice }}
+            BGN {{ totalPrice }}
         </div>
 
         <div class="col-3">

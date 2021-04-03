@@ -14,7 +14,7 @@
             <h6>
                 {{ featuredProduct.name }}
 
-                ${{ price }}
+                BGN {{ price }}
             </h6>
 
             <cart-add-controls

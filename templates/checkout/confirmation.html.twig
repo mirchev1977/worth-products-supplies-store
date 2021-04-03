@@ -54,7 +54,7 @@
                                                 {{ item.quantity }}
                                             </td>
                                             <td>
-                                                ${{ (item.product.price / 100)|number_format(2) }} <br />
+                                                BGN {{ (item.product.price / 100)|number_format(2) }} <br />
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -67,7 +67,7 @@
                                         </td>
                                         <td></td>
                                         <td>
-                                        ${{ (totalPrice / 100)|number_format(2) }}
+                                        BGN {{ (totalPrice / 100)|number_format(2) }}
                                         </td>
                                     </tr>
                                 </tfoot>
