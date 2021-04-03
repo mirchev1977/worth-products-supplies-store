@@ -33,7 +33,7 @@
 
                 <div class="row mt-4 align-items-center">
                     <div class="col-4">
-                        Price: <strong>${{ price }}</strong>
+                        Price: <strong>BGN {{ price }}</strong>
                     </div>
 
                     <div class="col-8 p-3">

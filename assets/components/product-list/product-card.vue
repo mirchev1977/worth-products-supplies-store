@@ -20,7 +20,7 @@
 
             <div class="p-2 my-3 d-md-flex justify-content-between">
                 <p class="p-0 d-inline">
-                    <strong>${{ price }}</strong>
+                    <strong>BGN {{ price }}</strong>
                 </p>
 
                 <button
