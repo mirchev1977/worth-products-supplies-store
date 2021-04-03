@@ -6,6 +6,7 @@
         />
 
         <input
+            v-if="isLogged"
             v-model.number="quantity"
             class="form-control mx-3"
             type="number"
@@ -13,6 +14,7 @@
         >
 
         <button
+            v-if="isLogged"
             class="btn btn-info btn-sm"
             :disabled="!allowAddToCart"
             @click="addToCart"
@@ -64,6 +66,7 @@ export default {
         return {
             quantity: 1,
             selectedColorId: null,
+            isLogged: window['user'],
         };
     },
     methods: {
