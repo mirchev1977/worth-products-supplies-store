@@ -56,7 +56,8 @@
             <ul class="navbar-nav">
                 {% if app.session.get('user') %}
                     <li class="nav-item">
-                        <a id="purchase-history" class="purchase-history navbar-nav text-white float-right mr-4 mb-2 mt-0">Purchase History</a>
+                        <a id="clear-history" class="purchase-history navbar-nav text-white float-right mr-4 mb-2 mt-0">X</a>
+                        <a id="purchase-history" class="purchase-history navbar-nav text-white float-right mr-2 mb-2 mt-0">Purchase History</a>
                         <p class="navbar-nav text-white float-right mr-4 mb-2 mt-0">Welcome, {{app.session.get('user').email}}!</p>
                     </li>
                 {% endif %}
@@ -111,6 +112,15 @@
                     });
                     logout.addEventListener('click', function () {
                         window.localStorage.removeItem("myHistory");
+                    });
+
+                    var clearHistory = document.getElementById('clear-history');
+                    clearHistory.addEventListener('click', function () {
+                        let usersLS = JSON.parse(localStorage.getItem("usersLS"));
+                        usersLS[window.user.email] = {};
+                        window.localStorage.setItem("usersLS", JSON.stringify(usersLS));
+                        window.localStorage.removeItem("myHistory");
+                        window.location.replace('/');
                     });
 
                 var purchaseHistory = document.getElementById('purchase-history');
