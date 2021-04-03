@@ -29,6 +29,7 @@
                             'nav-link': true,
                             'selected': category['@id'] === currentCategoryId,
                         }"
+                        @click="onClick"
                     >
                         {{ category.name }}
                     </a>
@@ -51,6 +52,7 @@
 <script>
 import Loading from '@/components/loading';
 import { fetchCategories } from '@/services/categories-service';
+import axios from 'axios';
 
 export default {
     name: 'Sidebar',
@@ -74,6 +76,18 @@ export default {
     computed: {
         loading() {
             return this.categories.length === 0;
+        },
+    },
+    methods: {
+        onClick(ev) {
+            ev.preventDefault();
+            const { href } = ev.target;
+            console.log(href);
+            axios.get(href).then((data) => {
+                window.document.write(data.data);
+                const html = window.document.querySelector('html');
+                window.history.pushState('', '', '/');
+            });
         },
     },
 };
