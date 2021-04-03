@@ -59,6 +59,11 @@ export default {
     components: {
         Loading,
     },
+    data() {
+        return {
+            clicked: 0,
+        };
+    },
     props: {
         collapsed: {
             type: Boolean,
@@ -79,15 +84,15 @@ export default {
         },
     },
     methods: {
-        onClick(ev) {
-            ev.preventDefault();
-            const { href } = ev.target;
-            console.log(href);
-            axios.get(href).then((data) => {
-                window.document.write(data.data);
-                const html = window.document.querySelector('html');
-                window.history.pushState('', '', '/');
-            });
+        async onClick(ev) {
+            // ev.preventDefault();
+
+            // const { href } = ev.target;
+
+            // const response = await axios.get(href);
+
+            // window.document.write(response.data);
+            // window.history.pushState('', '', '/');
         },
     },
 };
